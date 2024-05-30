@@ -1,0 +1,459 @@
+<html>
+
+<head>
+    <title>Clustal Omega &lt; Multiple Sequence Alignment &lt; EMBL-EBI</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+
+    <style>
+        /* Body Styles */
+
+        body {
+            margin: 0;
+            padding: 0;
+            background: white;
+            font-family: Helvetica, Arial, FreeSans, "Liberation Sans", sans-serif;
+            font-weight: normal;
+            line-height: 1.5;
+            color: #222;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        div {
+            padding-left: 3%;
+            padding-right: 3%;
+        }
+
+        textarea {
+            font-size: 15px;
+            font-family: Helvetica;
+            height: auto;
+            width: 100%;
+            min-height: 100px;
+            border-radius: 0;
+        }
+
+        select {
+            width: 100%;
+            padding: 8px;
+            font-size: 15px;
+            border-radius: 0;
+        }
+
+        fieldset {
+            margin: 1%;
+            padding: 1%;
+            background-color: #f7f7f7;
+            border: 0px solid #999;
+        }
+
+        legend {
+            display: block;
+            padding: 5px 10px;
+            border: 1px solid #ccc;
+            background-color: #e5e4e5;
+            border-radius: 5px;
+        }
+
+        /* Link Styles */
+
+        a {
+            line-height: inherit;
+            color: #007c82;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        a:hover,
+        a:focus {
+            color: #006b70;
+        }
+
+        .search a {
+            color: black;
+            border-bottom: 1px dotted grey;
+        }
+
+        .search a:hover {
+            color: #057c81;
+            cursor: pointer;
+        }
+
+        /* 'Submit' Button Styles */
+
+        .button {
+            font-size: 15px;
+            background-color: #027d81;
+            color: white;
+            margin: 5px 0px;
+            padding: 14px;
+            border: 0px display:inline-block;
+            cursor: pointer;
+        }
+
+        .button:hover {
+            font-size: 15px;
+            background-color: #008a8f;
+            color: white;
+            margin: 5px 0px;
+            padding: 14px;
+            border: 0px display:inline-block;
+            cursor: pointer;
+        }
+
+        /* Top Navigation Bar Styles*/
+
+        .topnav {
+            color: white;
+            overflow: hidden;
+            background-color: #333;
+        }
+
+        .topnav a {
+            color: white;
+            float: left;
+            font-size: 14px;
+            text-align: center;
+            padding: 12px 14px;
+            margin-top: 1%;
+            margin-bottom: 0;
+            text-decoration: none;
+        }
+
+        .topnav a.split {
+            float: right;
+            padding: 0;
+            top-margin: 1%;
+        }
+
+        .topnav a.split img {
+            float: right;
+        }
+
+        .topnav a:nth-child(1),
+        .topnav a:nth-child(2) {
+            background-color: #000;
+        }
+
+        .topnav a:hover {
+            background-color: #057c81;
+            cursor: pointer;
+        }
+
+        .topnav a:nth-child(2):hover {
+            background-color: #057c81;
+        }
+
+        .topnav a:nth-child(3):hover {
+            background-color: #8ac177;
+        }
+
+        .topnav a:nth-child(4):hover {
+            background-color: #e0b409;
+        }
+
+        .topnav a:nth-child(5):hover,
+        .topnav a:nth-child(7):hover {
+            background-color: #969693;
+        }
+
+        .topnav a.split:hover {
+            opacity: 0.6;
+            cursor: pointer;
+        }
+
+        /* Header Styles */
+
+        .header {
+            width: auto;
+            padding-left: 3%;
+            overflow: hidden;
+            font-weight: 2;
+            color: white;
+            background-color: #057c81;
+        }
+
+        /* Navigation bar in Header Styles */
+
+        .nav {
+            overflow: hidden;
+            position: -webkit-sticky;
+            /* Safari */
+            position: sticky;
+            top: 0;
+            width: auto;
+            background-color: #057c81;
+        }
+
+        .nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav li {
+            float: left;
+            border-right: 1px solid #fff;
+        }
+
+        .nav li a {
+            color: white;
+            margin: 0;
+            margin-left: -4px;
+            font-size: 14px;
+            text-align: center;
+            padding: 12px 14px;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .nav li a:hover {
+            margin-left: -4px;
+            color: black;
+            background-color: #9bbebd;
+            font-size: 14px;
+            text-align: center;
+            padding: 12px 14px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .nav li a:nth-child(2):hover {
+            opacity: 0.8;
+            color: black;
+        }
+
+        .nav li a:last-child {
+            border-right: none;
+        }
+
+        /* Announcement Styles */
+
+        .quote {
+            font-color: #333;
+            margin: 10px 70px;
+            padding: 1px;
+            padding-left: 1%;
+            padding-right: 1%;
+            background-color: #b4d9db;
+        }
+
+
+        /* Create columns at the footer */
+
+        .column {
+            float: left;
+            width: 15%;
+            height: auto;
+            margin: 0;
+            padding: 5px;
+        }
+
+        /* Clear floats after the columns */
+
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        .column ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            font-color: #848884;
+            font-size: 14px;
+        }
+
+        .column li {
+            margin-bottom: 5px;
+            padding: 2px;
+        }
+    </style>
+</head>
+
+<body>
+    <!--- Top Navigation Bar--->
+    <div class="topnav">
+        <a href="https://www.ebi.ac.uk/"><i class="fa fa-home" style="color: #fff;"></i>&nbsp;&nbsp;EMBL-EBI</a>
+        <a href="https://www.ebi.ac.uk/services">Services</a>
+        <a href="https://www.ebi.ac.uk/research">Research</a>
+        <a href="https://www.ebi.ac.uk/training">Training</a>
+        <a href="https://www.ebi.ac.uk/industry">Industry</a>
+        <a href="https://www.ebi.ac.uk/about">About us</a>
+        <a href="https://www.ebi.ac.uk/Tools/msa/clustalo/#"><i class="fa fa-search" style="color: #ffffff;"></i></a>
+        <a class=split><img src="https://i.ibb.co/nBbYFX5/embl.png" height=5%></a>
+    </div>
+
+    <!--- Header section --->
+    <div class="header">
+        <h1 align=left style="font-family:Helvetica;font-weight:1; font-size:50px; margin:0; padding-top:30px;padding-bottom:5px;"> Clustal Omega </h1>
+    </div>
+
+    <!--- Navigation Bar in the Header --->
+    <div class="nav">
+        <ul>
+            <li><a href="https://www.ebi.ac.uk/Tools/msa/clustalo/">Input form</a></li>
+            <li><a href="https://www.ebi.ac.uk/seqdb/confluence/display/JDSAT/Clustal+Omega+Help+and+Documentation#ClustalOmegaHelpandDocumentation-WebServices">Web services</a></li>
+            <li><a href="https://www.ebi.ac.uk/seqdb/confluence/display/JDSAT/Clustal+Omega+Help+and+Documentation">Help & Documentation</a></li>
+            <li><a href="https://www.ebi.ac.uk/seqdb/confluence/display/JDSAT/Bioinformatics+Tools+FAQ">Bioinformatics Tools FAQ</a></li>
+            <li style="float:right;border-right: 0px solid white;"><a href="https://www.ebi.ac.uk/support/index.php"><i class="fa fa-comments"></i>
+Feedback</a></li>
+        </ul>
+    </div>
+
+    <!--- Body section--->
+    <p class="search" style="padding-left:4%;">Tools > <a style="color:grey;border-bottom:0px dotted grey;" href="https://www.ebi.ac.uk/Tools/msa">Multiple Sequence Alignment</a> > Clustal Omega</p>
+
+    <!--- Service Announcement--->
+    <div class="quote">
+        <p style="font-size:120%;">Service Announcement</p>
+        <p class="search">The new Job Dispatcher Services beta website is now available at <a style="color:grey;" href="https://wwwdev.ebi.ac.uk/Tools/jdispatcher">https://wwwdev.ebi.ac.uk/Tools/jdispatcher</a>. We'd love to hear your <a href="https://www.ebi.ac.uk/support/job-dispatcher-services">feedback</a> about the new webpages!</p>
+    </div>
+
+    <!--- Title and description--->
+    <div>
+        <h2 style="font-family:Helvetica;font-weight:1;color:#057c81;font-size:40px; margin:0; padding-top:10px;">Multiple Sequence Alignment</h2>
+        <p>Clustal Omega is a new multiple sequence alignment program that uses seeded guide trees and HMM profile-profile techniques to generate alignments between <b>three or more</b> sequences. For the alignment of two sequences please instead use our pairwise sequence alignment tools.<br><br>
+            <b>Important note: </b> This tool can align up to 4000 sequences or a maximum file size of 4 MB.</p>
+    </div>
+
+    <!--- Step 1: Enter input sequences--->
+    <div class="search">
+        <fieldset>
+            <legend>STEP 1 - Enter your input sequences</legend>
+
+            <form action="/action_page.php">
+                <label for="biology">Enter or paste a set of:</label><br>
+                <select name="biology" id="biology">
+        <option value="protein">PROTEIN</option>
+        <option value="dna">DNA</option>
+        <option value="rna">RNA</option>
+        </select><br><br>
+                <label for="lname">sequences in any supported format:</label><br>
+                <textarea id="w3review" name="w3review" rows="4" cols="50">>sp|P69905|HBA_HUMAN Hemoglobin subunit alpha OS=Homo sapiens GN=HBA1 PE=1 SV=2
+MVLSPADKTNVKAAWGKVGAHAGEYGAEALERMFLSFPTTKTYFPHFDLSHGSAQVKGHG
+KKVADALTNAVAHVDDMPNALSALSDLHAHKLRVDPVNFKLLSHCLLVTLAAHLPAEFTP
+AVHASLDKFLASVSTVLTSKYR
+>sp|P01942|HBA_MOUSE Hemoglobin subunit alpha OS=Mus musculus GN=Hba PE=1 SV=2
+MVLSGEDKSNIKAAWGKIGGHGAEYGAEALERMFASFPTTKTYFPHFDVSHGSAQVKGHG
+KKVADALASAAGHLDDLPGALSALSDLHAHKLRVDPVNFKLLSHCLLVTLASHHPADFTP
+AVHASLDKFLASVSTVLTSKYR
+>sp|P13786|HBAZ_CAPHI Hemoglobin subunit zeta OS=Capra hircus GN=HBZ1 PE=3 SV=2
+MSLTRTERTIILSLWSKISTQADVIGTETLERLFSCYPQAKTYFPHFDLHSGSAQLRAHG
+SKVVAAVGDAVKSIDNVTSALSKLSELHAYVLRVDPVNFKFLSHCLLVTLASHFPADFTA
+DAHAAWDKFLSIVSGVLTEKYR
+</textarea>
+                <p> Or, <label for="upfile"> <a href="https://www.ebi.ac.uk/seqdb/confluence/display/JDSAT/Clustal+Omega+Help+and+Documentation#ClustalOmegaHelpandDocumentation-upload" target="_help">upload</a> </label> a file: <input id="upfile" name="upfile" type="file" /> <label style="float: right; text-align: right;"> Use a <a href="#" id="exampleSeq">example sequence</a> | <a href="#" id="clearSequence">Clear sequence</a> | <a href="#" id="seeMoreExample">See more example inputs</a> </label> </p>
+
+
+            </form>
+        </fieldset>
+    </div>
+
+    <!--- Step 2: Set your parameter--->
+    <div>
+        <fieldset>
+            <legend>STEP 2 - Set your parameters</legend>
+            <form action="/action_page.php">
+                <label for="cars">OUTPUT FORMAT</label><br>
+                <select name="output" id="output">
+        <option value="count">ClustalW with character counts</option>
+        <option value="clustalw">Clustal W</option>
+        <option value="pearson">Pearson/FASTA</option>
+        <option value="msf">MSF</option>
+        <option value="nexus">MSF</option>
+        <option value="phylip">PHYLIP</option>
+        <option value="selex">SELEX</option>
+        <option value="stockholm">STOCKHOLM</option>
+        <option value="vienna">VIENNA</option>
+        </select><br><br>
+                <I>The default settings will fulfil the needs of most users.</I><br><br>
+                <button style="font-size:15px;margin:5px 5px;padding:5px;" type="button">More option...</button> (Click here, if you want to view or change the default settings.)</form>
+        </fieldset>
+    </div>
+
+    <!--- Step 3: Submit your job--->
+    <div>
+        <fieldset>
+            <legend>STEP 3 - Submit your job</legend>
+            <form action="/action_page.php">
+                <input type="checkbox" id="tick" name="tick" value="Bike">
+                <label for="tick"> Be notified by email <i>(Tick this box if you want to be notified by email when the results are available)</i></label><br><br>
+                <a href="jane_output.html" class="button">Submit</a>
+
+            </form>
+
+        </fieldset>
+    </div>
+
+    <!--- Notice --->
+    <div class="search" style="padding-bottom:2%;">
+        <p> If you use this service, please consider citing the following publication: <a href="https://europepmc.org/article/MED/35412617"><b>Search and sequence analysis tools services from EMBL-EBI in 2022</b></a> </p>
+        <p> Please read the provided Help &amp; Documentation and FAQs before seeking help from our support staff. If you have any feedback or encountered any issues please let us know via <a href="//www.ebi.ac.uk/support/WebServices">EMBL-EBI Support</a>. If you plan to use these services during a course please <a href="http://www.ebi.ac.uk/support/WebServices">contact us</a>. Read our <a href="https://www.ebi.ac.uk/data-protection/privacy-notice/sequence-analysis-and-data-retrieval-tools-job-dispatcher-and-dbfetch-">Privacy Notice</a> if you are concerned with your privacy and how we handle personal information. </p>
+    </div>
+
+    <!--- Footer section --->
+    <div style="border-top:5px solid #d3d3d3;"></div>
+
+    <!--- Links in different columns at Footer section --->
+    <div class="row">
+        <div class="column" style="padding-top:2%;">
+            <center>
+                <a href="https://www.ebi.ac.uk/"><img src="https://beta.openaire.eu/images/stories/partners/EBI_logo_RGB.jpg" width="80%"></a></center>
+        </div>
+
+        <div class="column">
+            <ul>
+                <li style="list-style:none;font-family:Helvetica;font-weight:1;color:#057c81;font-size:20px; margin:0; padding-top:10%; padding-bottom:5%;">Service</li>
+                <li>Data Resources and tools</li>
+                <li>Data submission</li>
+                <li>Support and feedback</li>
+                <li>Licensing</li>
+            </ul>
+        </div>
+
+        <div class="column">
+            <ul>
+                <li style="list-style:none;font-family:Helvetica;font-weight:1;color:#8ac177;font-size:20px; margin:0; padding-top:10%;padding-bottom:5%;">Research</li>
+                <li>Publications</li>
+                <li>Research groups</li>
+                <li>Postdocs and PhDs</li>
+            </ul>
+        </div>
+
+        <div class="column">
+            <ul>
+                <li style="list-style:none;font-family:Helvetica;font-weight:1;color:#e0b409;font-size:20px; margin:0; padding-top:10%;padding-bottom:5%;">Training</li>
+                <li>Live training</li>
+                <li>On-demand training</li>
+                <li>Support for trainers</li>
+                <li>Contact organisers</li>
+            </ul>
+        </div>
+
+        <div class="column">
+            <ul>
+                <li style="list-style:none;font-family:Helvetica;font-weight:1;color:#5083a1;font-size:20px; margin:0; padding-top:10%;padding-bottom:5%;">Industry</li>
+                <li>Members Area</li>
+                <li>Contact Industry team</li>
+            </ul>
+        </div>
+
+        <div class="column">
+            <ul>
+                <li style="list-style:none;font-family:Helvetica;font-weight:1;color:#057c81;font-size:20px; margin:0; padding-top:10%;padding-bottom:5%;">About EMBL-EBL</li>
+                <li>Contact us</li>
+                <li>Events</li>
+                <li>Jobs</li>
+                <li>News</li>
+                <li>People and groups</li>
+            </ul>
+        </div>
+    </div>
+
+    <!--- Credits and Copyright --->
+    <p style="padding-left:3%; font-size:14px; color:grey;">EMBL-EBI, Wellcome Trust Genome Campus, Hinxton, Cambridgeshire, CB10 1SD, UK &nbsp; &nbsp; +44 (0)1223 49 44 44</p>
+    <p class="search" style="padding-left:3%; font-size:14px;">Copyright &copy; EMBL-EBI 2013 | EBI is an outstation of the <a href="http://www.embl.org">European Molecular Biology Laboratory</a> | <a href="/about/privacy">Privacy</a> | <a href="/about/cookies">Cookies</a> | <a href="/about/terms-of-use">Terms of use</a></p>
